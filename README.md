@@ -1,2 +1,3 @@
-# tennis4all-coach-kit
-Free AI session planner for volunteer tennis coaches (Tennis4All)
+# Tennis4All Coach Kit
+
+Session planner for volunteer and community tennis coaches. The full guide is added with the app.
