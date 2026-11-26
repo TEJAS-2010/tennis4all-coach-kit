@@ -56,7 +56,7 @@ export function finalizePlan(
     : [];
   const remaining = auditSafety(kitResult.blocks, input);
   const safetyChanges = [
-    ...timingChange.filter((change) => !safety.changes.some((item) => item.code === "timings")),
+    ...(safety.changes.some((item) => item.code === "timings") ? [] : timingChange),
     ...safety.changes.filter((change) => change.action !== "flagged"),
     ...remaining.map((issue) => ({
       code: issue.code,

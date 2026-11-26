@@ -4,13 +4,13 @@ import type { PlanBlock, PlanDraft, SessionInput } from "@/lib/types";
 
 export const sessionInputSchema = z
   .object({
-    groupSize: z.number().int().min(1).max(40),
-    ageMin: z.number().int().min(4).max(18),
-    ageMax: z.number().int().min(4).max(18),
+    groupSize: z.number().int().min(1, "Group size has to be at least 1.").max(40, "Group size cannot be more than 40."),
+    ageMin: z.number().int().min(4, "Age has to be from 4 to 18.").max(18, "Age has to be from 4 to 18."),
+    ageMax: z.number().int().min(4, "Age has to be from 4 to 18.").max(18, "Age has to be from 4 to 18."),
     level: z.enum(["beginner", "developing", "intermediate"]),
-    rackets: z.number().int().min(0).max(60),
-    balls: z.number().int().min(0).max(80),
-    cones: z.number().int().min(0).max(40),
+    rackets: z.number().int().min(0, "Rackets cannot be negative.").max(60, "Rackets cannot be more than 60."),
+    balls: z.number().int().min(0, "Balls cannot be negative.").max(80, "Balls cannot be more than 80."),
+    cones: z.number().int().min(0, "Cones cannot be negative.").max(40, "Cones cannot be more than 40."),
     court: z.enum(["full", "half", "wall"]),
     minutes: z.union([
       z.literal(30),

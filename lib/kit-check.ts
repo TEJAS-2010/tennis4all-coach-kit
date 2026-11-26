@@ -145,6 +145,7 @@ function racketDetail(
   ballsInPlay: number,
   conesOnStation: number,
   ballsShort: boolean,
+  othersAreWaiting: boolean,
 ): string {
   const language = input.language;
   const parts: string[] = [];
@@ -185,7 +186,7 @@ function racketDetail(
       }),
     );
   }
-  if (input.balls > ballsInPlay) {
+  if (!othersAreWaiting && input.balls > ballsInPlay) {
     parts.push(
       tx(language, {
         en: "Spare balls stay in the basket until a ball is lost.",
@@ -359,7 +360,7 @@ export function checkKit(input: SessionInput): KitPlan {
       rackets: hittingSlots,
       balls: ballsForHitting,
       cones: racketCones,
-      detail: racketDetail(input, ballsForHitting, racketCones, ballsShort),
+      detail: racketDetail(input, ballsForHitting, racketCones, ballsShort, waiting > 0),
     });
   }
   stations.push(...waitingStations);

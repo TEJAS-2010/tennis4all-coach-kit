@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #080908;
+  --fg: #f3f4ee;
+  --muted: #a4a89c;
+  --line: #2c3028;
+  --neon: #d6ff3c;
+  --ink: #12160a;
+  --paper: #ffffff;
+  --paper-ink: #161616;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-neon: var(--neon);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-paper-ink: var(--paper-ink);
+  --font-sans: var(--font-sans), "Noto Sans", sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--neon);
+  color: var(--ink);
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .plan-sheet,
+  .plan-sheet * {
+    background: transparent !important;
+    color: #111 !important;
+    box-shadow: none !important;
+  }
+
+  .plan-sheet {
+    border: 0 !important;
+    padding: 0 !important;
+    font-size: 10.5px;
+    line-height: 1.35;
+  }
+
+  .plan-sheet h2 {
+    font-size: 16px;
+  }
+
+  .block-grid {
+    display: block;
+  }
+
+  .block-card {
+    break-inside: avoid;
+    margin-bottom: 8px;
+  }
 }
